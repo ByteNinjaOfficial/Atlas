@@ -185,6 +185,9 @@ Then open the interactive Swagger docs at: `http://127.0.0.1:8001/docs`
 ### POST `/predict` — Prediction Endpoint
 ![POST Predict Endpoint](Screenshots/POST%20Predict.png)
 
+### POST `/predict` — Successful Prediction Response
+![Successful Prediction Response](Screenshots/successful%20prediction%20response.png)
+
 ---
 
 ## Technologies Used
@@ -213,10 +216,11 @@ mini-project-B/
 ├── requirements.txt     # Python dependencies
 ├── README.md            # Project documentation
 └── Screenshots/
-    ├── Landing page.png # Swagger UI overview
-    ├── GET Home.png     # GET / endpoint
-    ├── GET Health.png   # GET /health endpoint
-    └── POST Predict.png # POST /predict endpoint
+    ├── Landing page.png                    # Swagger UI overview
+    ├── GET Home.png                        # GET / endpoint
+    ├── GET Health.png                      # GET /health endpoint
+    ├── POST Predict.png                    # POST /predict endpoint
+    └── successful prediction response.png  # Prediction response output
 ```
 
 ---
