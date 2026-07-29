@@ -1,0 +1,205 @@
+(.venv) PS D:\GitHub\Week2-FWC> python .\mini-project-A\EDA                                                                                            
+D:\GitHub\Week2-FWC\.venv/Scripts\python.exe: can't open file 'D:\\GitHub\\Week2-FWC\\mini-project-A\\EDA': [Errno 2] No such file or directory
+(.venv) PS D:\GitHub\Week2-FWC> python .\mini-project-A\EDA.py
+Starting Enhanced Exploratory Data Analysis...
+Successfully loaded dataset from D:\GitHub\Week2-FWC\mini-project-A\..\Titanic-Dataset.csv
+
+========================================
+1. Dataset Overview
+========================================
+- Shape: 891 rows, 15 columns
+- Column names: PassengerId, Survived, Pclass, Name, Sex, Age, SibSp, Parch, Ticket, Fare, Cabin, Embarked, FamilySize, IsAlone, Title
+
+- Data types:
+PassengerId      int64
+Survived         int64
+Pclass           int64
+Name               str
+Sex                str
+Age            float64
+SibSp            int64
+Parch            int64
+Ticket             str
+Fare           float64
+Cabin              str
+Embarked           str
+FamilySize       int64
+IsAlone          int64
+Title              str
+dtype: object
+
+- Memory usage: 0.14 MB
+
+- First 5 rows:
+   PassengerId  Survived  Pclass                                               Name     Sex   Age  SibSp  ...            Ticket     Fare  Cabin Embarked FamilySize  IsAlone  Title
+0            1         0       3                            Braund, Mr. Owen Harris    male  22.0      1  ...         A/5 21171   7.2500    NaN        S          2        0     Mr
+1            2         1       1  Cumings, Mrs. John Bradley (Florence Briggs Th...  female  38.0      1  ...          PC 17599  71.2833    C85        C          2        0    Mrs
+2            3         1       3                             Heikkinen, Miss. Laina  female  26.0      0  ...  STON/O2. 3101282   7.9250    NaN        S          1        1   Miss
+3            4         1       1       Futrelle, Mrs. Jacques Heath (Lily May Peel)  female  35.0      1  ...            113803  53.1000   C123        S          2        0    Mrs
+4            5         0       3                           Allen, Mr. William Henry    male  35.0      0  ...            373450   8.0500    NaN        S          1        1     Mr
+
+[5 rows x 15 columns]
+
+========================================
+2. Target Analysis
+========================================
+Overall Survival Rate: 38.38%
+Deaths: 61.62%
+
+
+========================================
+3. Missing Value Analysis
+========================================
+
+- Missing Values Summary:
+          Missing Values  Percentage (%)
+Cabin                687       77.104377
+Age                  177       19.865320
+Embarked               2        0.224467
+
+- Suggestions for handling missing data:
+
+Feature: Cabin
+77.1% missing
+Recommended: Drop the feature
+
+Feature: Age
+19.9% missing
+Recommended: Median Imputation
+
+Feature: Embarked
+0.2% missing
+Recommended: Drop rows with missing values or Impute
+
+- Saved missing value heatmap to D:\GitHub\Week2-FWC\mini-project-A\output/missing_value_heatmap.png
+
+========================================
+4. Statistical Summary
+========================================
+D:\GitHub\Week2-FWC\mini-project-A\EDA.py:135: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  categorical_cols = df.select_dtypes(include=['object', 'category']).columns
+
+- Numerical Statistics (Extended):
+                   mean         std   min       max      variance  skewness   kurtosis
+PassengerId  446.000000  257.353842  1.00  891.0000  66231.000000  0.000000  -1.200000
+Survived       0.383838    0.486592  0.00    1.0000      0.236772  0.478523  -1.775005
+Pclass         2.308642    0.836071  1.00    3.0000      0.699015 -0.630548  -1.280015
+Age           29.699118   14.526497  0.42   80.0000    211.019125  0.389108   0.178274
+SibSp          0.523008    1.102743  0.00    8.0000      1.216043  3.695352  17.880420
+Parch          0.381594    0.806057  0.00    6.0000      0.649728  2.749117   9.778125
+Fare          32.204208   49.693429  0.00  512.3292   2469.436846  4.787317  33.398141
+FamilySize     1.904602    1.613459  1.00   11.0000      2.603248  2.727441   9.159666
+IsAlone        0.602694    0.489615  0.00    1.0000      0.239723 -0.420431  -1.827345
+
+- Categorical Statistics:
+D:\GitHub\Week2-FWC\mini-project-A\EDA.py:149: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  print(df[categorical_cols].describe(include=['object', 'category']))
+                           Name   Sex  Ticket Cabin Embarked Title
+count                       891   891     891   204      889   891
+unique                      891     2     681   147        3     5
+top     Braund, Mr. Owen Harris  male  347082    G6        S    Mr
+freq                          1   577       7     4      644   517
+
+========================================
+5. Distribution Analysis
+========================================
+- Saved combined distribution plots (Hist, KDE, Boxplot) for Age
+- Saved combined distribution plots (Hist, KDE, Boxplot) for Fare
+
+========================================
+6. Univariate Analysis
+========================================
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+D:\GitHub\Week2-FWC\mini-project-A\EDA.py:199: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.countplot(data=df, x=feature, palette='Set2')
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+D:\GitHub\Week2-FWC\mini-project-A\EDA.py:199: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.countplot(data=df, x=feature, palette='Set2')
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+D:\GitHub\Week2-FWC\mini-project-A\EDA.py:199: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.countplot(data=df, x=feature, palette='Set2')
+D:\GitHub\Week2-FWC\mini-project-A\EDA.py:199: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.countplot(data=df, x=feature, palette='Set2')
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+D:\GitHub\Week2-FWC\mini-project-A\EDA.py:199: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.countplot(data=df, x=feature, palette='Set2')
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+- Saved univariate charts (PNG + Plotly HTML) to D:\GitHub\Week2-FWC\mini-project-A\output/
+
+========================================
+7. Bivariate Analysis
+========================================
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+- Saved bivariate charts (PNG + Plotly HTML) to D:\GitHub\Week2-FWC\mini-project-A\output/
+
+========================================
+8. Correlation & Relationship Analysis
+========================================
+
+- Correlation Matrix:
+             PassengerId  Survived    Pclass       Age     SibSp     Parch      Fare  FamilySize   IsAlone
+PassengerId     1.000000 -0.005007 -0.035144  0.036847 -0.057527 -0.001652  0.012658   -0.040143  0.057462
+Survived       -0.005007  1.000000 -0.338481 -0.077221 -0.035322  0.081629  0.257307    0.016639 -0.203367
+Pclass         -0.035144 -0.338481  1.000000 -0.369226  0.083081  0.018443 -0.549500    0.065997  0.135207
+Age             0.036847 -0.077221 -0.369226  1.000000 -0.308247 -0.189119  0.096067   -0.301914  0.198270
+SibSp          -0.057527 -0.035322  0.083081 -0.308247  1.000000  0.414838  0.159651    0.890712 -0.584471
+Parch          -0.001652  0.081629  0.018443 -0.189119  0.414838  1.000000  0.216225    0.783111 -0.583398
+Fare            0.012658  0.257307 -0.549500  0.096067  0.159651  0.216225  1.000000    0.217138 -0.271832
+FamilySize     -0.040143  0.016639  0.065997 -0.301914  0.890712  0.783111  0.217138    1.000000 -0.690922
+IsAlone         0.057462 -0.203367  0.135207  0.198270 -0.584471 -0.583398 -0.271832   -0.690922  1.000000
+- Saved correlation heatmap to D:\GitHub\Week2-FWC\mini-project-A\output/correlation_heatmap.png
+- Saved pairplot to D:\GitHub\Week2-FWC\mini-project-A\output/pairplot.png
+- Saved interactive scatter matrix to D:\GitHub\Week2-FWC\mini-project-A\output/plotly_scatter_matrix.html
+
+========================================
+9. Feature-Level & Data-Driven Insights
+========================================
+
+Feature: Sex
+- Female survival rate: 74.2%
+- Male survival rate: 18.9%
+
+Feature: Passenger Class
+- Class 1 survival rate: 63.0%
+- Class 2 survival rate: 47.3%
+- Class 3 survival rate: 24.2%
+
+Feature: Embarked
+- Port C survival rate: 55.4%
+- Port Q survival rate: 39.0%
+- Port S survival rate: 33.7%
+
+Feature: Age Groups
+- Child survival rate: 58.0%
+- Teen survival rate: 42.9%
+- Adult survival rate: 38.9%
+- Senior survival rate: 22.7%
+
+Feature: Family Size
+- Small families (2-4 members) usually survive better. Best size: 4 (Rate: 72.4%)
+
+- Generated dynamic summary report at D:\GitHub\Week2-FWC\mini-project-A\output\summary.md
+
+========================================
+Enhanced EDA completed successfully!
+All standard and interactive Plotly outputs are saved in: D:\GitHub\Week2-FWC\mini-project-A\output
+========================================
