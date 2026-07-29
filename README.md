@@ -128,6 +128,8 @@ Then open the API docs at: `http://127.0.0.1:8001/docs`
 
 The prediction API (Phase 2) is containerized and available on Docker Hub! You can pull and run the image directly without installing any local dependencies.
 
+> ⚡ **CI/CD Integrated:** This project uses **GitHub Actions** for Continuous Integration and Continuous Deployment. The Docker image on Docker Hub is automatically rebuilt and updated whenever new changes are pushed to the main branch.
+
 **Docker Hub Link:** [byteninja16/titanic-api](https://hub.docker.com/r/byteninja16/titanic-api)
 
 ### Run the Docker Container
