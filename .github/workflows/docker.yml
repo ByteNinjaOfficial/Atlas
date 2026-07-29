@@ -1,0 +1,44 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "mini-project-B/**"
+      - ".github/workflows/docker.yml"
+
+jobs:
+  docker:
+    name: Build & Push Image
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Enable Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Login to Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Build Docker Image
+      - name: Build Docker Image
+        run: |
+          docker build \
+            -t byteninja16/titanic-api:latest \
+            -t byteninja16/titanic-api:${{ github.sha }} \
+            ./mini-project-B
+
+      # Push Docker Images
+      - name: Push Docker Images
+        run: |
+          docker push byteninja16/titanic-api:latest
+          docker push byteninja16/titanic-api:${{ github.sha }}
