@@ -124,6 +124,21 @@ Then open the API docs at: `http://127.0.0.1:8001/docs`
 
 ---
 
+## 🐳 Docker Deployment
+
+The prediction API (Phase 2) is containerized and available on Docker Hub! You can pull and run the image directly without installing any local dependencies.
+
+**Docker Hub Link:** [byteninja16/titanic-api](https://hub.docker.com/r/byteninja16/titanic-api)
+
+### Run the Docker Container
+```bash
+docker pull byteninja16/titanic-api
+docker run -p 8001:8001 byteninja16/titanic-api
+```
+The API will then be available at `http://localhost:8001/docs`
+
+---
+
 ## 📜 License
 
 This project is licensed under the terms included in [LICENSE.txt](./LICENSE.txt).
